@@ -35,8 +35,16 @@ export function ContactForm() {
     if (!FORM_ENDPOINT) return setStatus("pending");
     setStatus("sending");
     try {
-      const res = await fetch(FORM_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: d });
-      if (!res.ok) throw new Error(String(res.status));
+      if (FORM_ENDPOINT.includes("script.google.com")) {
+        // Google Apps Script web app (pattern reused from the YOT site): JSON as text/plain avoids CORS preflight.
+        const payload = { type: "contact", ...Object.fromEntries([...d.entries()].filter(([k]) => k !== "website")) };
+        const res = await fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(payload) });
+        const out = await res.json();
+        if (out.result !== "success") throw new Error(out.message || "Submission failed");
+      } else {
+        const res = await fetch(FORM_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: d });
+        if (!res.ok) throw new Error(String(res.status));
+      }
       form.reset();
       setStatus("success");
     } catch {

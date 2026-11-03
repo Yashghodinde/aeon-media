@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AeonWordmark } from "@/components/ui/AeonWordmark";
-import { nav, site } from "@/lib/site";
+import { nav, site, contacts, whatsappLink } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -25,6 +25,11 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow mb-4 text-taupe md:mb-6">Get in touch</p>
           <ul className="space-y-1 text-ivory/85 [&_a]:inline-block [&_a]:py-2">
+            {contacts.map((c) => (
+              <li key={c.wa}>
+                <a href={whatsappLink(c.wa)} target="_blank" rel="noopener noreferrer">WhatsApp {c.name} · {c.display}</a>
+              </li>
+            ))}
             {site.email && <li><a href={`mailto:${site.email}`}>{site.email}</a></li>}
             {site.phone && <li><a href={`tel:${site.phone}`}>{site.phone}</a></li>}
             {site.socials.map((s) => (
