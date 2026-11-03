@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Button, TextLink } from "@/components/ui/Button";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { asset } from "@/lib/asset";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -29,8 +29,8 @@ export function Hero() {
           </motion.div>
         </div>
         <motion.div {...item(3)} className="relative" aria-hidden="true">
-          <ImagePlaceholder ratio="wide" compact label="Placeholder · featured work" className="lg:aspect-[4/5]" />
-          <div className="absolute -left-14 -top-10 hidden w-40 lg:block"><ImagePlaceholder ratio="square" tone="taupe" label="" className="shadow-none" /></div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={asset("/images/designs/d1.webp")} alt="" width={1600} height={2845} fetchPriority="high" className="aspect-[5/4] w-full rounded-2xl bg-champagne object-cover object-top lg:aspect-[4/5]" />
         </motion.div>
       </div>
     </section>

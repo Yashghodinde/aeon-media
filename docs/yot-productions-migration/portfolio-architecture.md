@@ -1,0 +1,2 @@
+# Architecture
+Data (`src/data/{projects,videos,designs}.ts`) → components (`src/components/portfolio/`: YouTubeCard, ReelsRail, LongVideoGrid, DesignGallery, VideoMarquee, InstagramEmbed, ProjectCard, WorkBrowser) → pages. Home: Hero (real design) → moving strip → reels rail → design gallery → value → brands → process → CTA. /work: sub-nav → Video & Film → Design & Creative → Brands. `asset()` applies the Pages base path to local media. Static export; no server code.

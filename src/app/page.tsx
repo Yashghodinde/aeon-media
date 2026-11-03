@@ -8,6 +8,13 @@ import { Reveal } from "@/components/ui/Reveal";
 import { TextLink } from "@/components/ui/Button";
 import { gains, industryLabels, valuePillars } from "@/data/content";
 import { projects } from "@/data/projects";
+import { VideoMarquee } from "@/components/portfolio/VideoMarquee";
+import { ReelsRail } from "@/components/portfolio/ReelsRail";
+import { DesignGallery } from "@/components/portfolio/DesignGallery";
+import { designs } from "@/data/designs";
+import { ClientsWall } from "@/components/portfolio/ClientsWall";
+import { clients } from "@/data/clients";
+import { mixShorts } from "@/data/videos";
 
 export default function HomePage() {
   const featured = [projects[0], projects[4], projects[7]];
@@ -15,7 +22,38 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <Section tone="champagne" labelledBy="value-title">
+      <section aria-label="Creative work in motion" className="overflow-hidden pb-[var(--aeon-section)]">
+        <VideoMarquee />
+      </section>
+
+      <Section tone="champagne" labelledBy="reels-title">
+        <Container>
+          <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
+            <Reveal><SectionHeading id="reels-title" eyebrow="Video & Film" title="Reels that hold attention." /></Reveal>
+            <TextLink href="/work#video">All videos</TextLink>
+          </div>
+          <div className="mt-8 md:mt-12"><ReelsRail items={mixShorts(20)} label="Selected reels" /></div>
+        </Container>
+      </Section>
+
+      <Section labelledBy="design-title">
+        <Container>
+          <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
+            <Reveal><SectionHeading id="design-title" eyebrow="Design & Creative" title="Design with a clear point of view." /></Reveal>
+            <TextLink href="/work#design">All design</TextLink>
+          </div>
+          <div className="mt-8 md:mt-12"><DesignGallery items={designs.filter((d) => ["dd1", "dd5", "dd4", "d1", "d3", "d6"].includes(d.id))} /></div>
+        </Container>
+      </Section>
+
+      <Section tone="champagne" labelledBy="clients-title">
+        <Container>
+          <Reveal><SectionHeading id="clients-title" eyebrow="Clients" title={`${clients.length} brands and clients we have worked with.`} /></Reveal>
+          <div className="mt-8 md:mt-12"><ClientsWall /></div>
+        </Container>
+      </Section>
+
+      <Section labelledBy="value-title">
         <Container>
           <Reveal><SectionHeading id="value-title" eyebrow="What you gain" title="A brand people recognise, connect with and remember." /></Reveal>
           <ul className="mt-10 grid gap-x-12 gap-y-8 md:mt-20 md:grid-cols-2 md:gap-y-14">

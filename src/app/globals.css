@@ -135,3 +135,10 @@ body {
 }
 .scroll-row::-webkit-scrollbar { display: none; }
 .pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+
+/* Moving reels strip (decorative). */
+.marquee-track { display: flex; width: max-content; gap: 1rem; animation: marquee 70s linear infinite; }
+.marquee-reverse .marquee-track { animation-direction: reverse; animation-duration: 80s; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(calc(-50% - 0.5rem)); } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } .marquee { overflow-x: auto; } }
