@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ExternalLink, Play } from "lucide-react";
-import type { PortfolioMedia } from "@/data/projects";
 import { cn } from "@/lib/cn";
 
 const frames = {
@@ -23,7 +22,9 @@ export function toEmbedUrl(postUrl: string): string | null {
  * so pages stay fast and no third-party script is needed. Uses Instagram's official /embed/ iframe
  * (native controls, attribution preserved). Falls back to a link to the original post.
  */
-export function InstagramEmbed({ media, brand }: { media: PortfolioMedia; brand: string }) {
+export type EmbedPost = { postUrl: string; aspectRatio?: keyof typeof frames; title?: string };
+
+export function InstagramEmbed({ media, brand, caption }: { media: EmbedPost; brand: string; caption?: string }) {
   const [active, setActive] = useState(false);
   const [failed, setFailed] = useState(false);
   const embed = media.postUrl ? toEmbedUrl(media.postUrl) : null;
@@ -63,7 +64,7 @@ export function InstagramEmbed({ media, brand }: { media: PortfolioMedia; brand:
         )}
       </div>
       <figcaption className="mt-3 flex items-center justify-between gap-3 text-sm text-muted">
-        <span className="truncate">{media.title ?? "Instagram"}</span>
+        <span className="line-clamp-2">{caption ?? media.title ?? "Instagram"}</span>
         {media.postUrl && (
           <a href={media.postUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 shrink-0 items-center gap-1 font-semibold text-charcoal">
             View on Instagram <ExternalLink aria-hidden="true" className="size-3.5" />

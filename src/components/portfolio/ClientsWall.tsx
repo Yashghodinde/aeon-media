@@ -1,22 +1,34 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { clients } from "@/data/clients";
+import { industryLabels } from "@/data/content";
+import { clientHref, clients, usedIndustries } from "@/data/clients";
 
-/** All clients, visible by name (not just links), each leading to its work. */
+/** Editorial client index: names grouped by primary industry. Every client is visible and links to its page. */
 export function ClientsWall() {
+  const groups = usedIndustries()
+    .map((k) => ({ key: k, label: industryLabels[k], items: clients.filter((c) => c.industries[0] === k) }))
+    .filter((g) => g.items.length > 0);
+
   return (
-    <ul className="grid grid-cols-1 border-t border-taupe/60 sm:grid-cols-2 lg:grid-cols-3">
-      {clients.map((c) => (
-        <li key={c.name} className="border-b border-taupe/60">
-          <Link href={c.href} className="group flex min-h-20 items-center justify-between gap-4 py-4 sm:px-2">
-            <span>
-              <span className="display-md block text-[1.375rem] leading-tight md:text-[1.625rem]">{c.name}</span>
-              <span className="mt-1 block text-sm text-muted">{c.detail}</span>
-            </span>
-            <ArrowUpRight aria-hidden="true" className="size-5 shrink-0 text-charcoal/50 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </Link>
-        </li>
+    <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-14">
+      {groups.map((g) => (
+        <section key={g.key} aria-label={g.label}>
+          <h3 className="eyebrow flex items-center justify-between border-b border-taupe pb-3 text-muted">
+            <span>{g.label}</span>
+            <span aria-hidden="true">{String(g.items.length).padStart(2, "0")}</span>
+          </h3>
+          <ul>
+            {g.items.map((c) => (
+              <li key={c.slug}>
+                <Link href={clientHref(c.slug)} className="group flex min-h-14 items-center justify-between gap-4 border-b border-line py-3">
+                  <span className="display-md text-[1.375rem] leading-tight transition-transform duration-300 group-hover:translate-x-1 md:text-[1.5rem]">{c.name}</span>
+                  <ArrowUpRight aria-hidden="true" className="size-4 shrink-0 text-charcoal/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-charcoal" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       ))}
-    </ul>
+    </div>
   );
 }

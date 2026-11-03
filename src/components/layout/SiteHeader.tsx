@@ -38,7 +38,7 @@ export function SiteHeader() {
           <AeonWordmark />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-10 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-5 md:flex lg:gap-10">
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -52,7 +52,7 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link href="/contact" className="rounded-full bg-charcoal px-6 py-2.5 text-sm font-semibold text-ivory transition-colors hover:bg-[#3d3a33]">
+          <Link href="/contact" className="rounded-full bg-charcoal px-4 py-2.5 text-sm font-semibold text-ivory transition-colors hover:bg-[#3d3a33] lg:px-6">
             Start a conversation
           </Link>
         </nav>
