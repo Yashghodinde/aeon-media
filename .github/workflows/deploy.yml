@@ -48,8 +48,6 @@ jobs:
           # project sites, <owner>.github.io sites and custom domains all work.
           NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.origin }}
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          # Optional: set as a repository *variable* (public endpoint, not a secret).
-          NEXT_PUBLIC_FORM_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORM_ENDPOINT }}
         run: npm run build
 
       - name: Verify static output

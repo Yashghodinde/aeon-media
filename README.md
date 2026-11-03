@@ -25,10 +25,10 @@ Hosting is **GitHub Pages** (static export, no server). Base path, workflow, cus
 | Item | Status |
 |---|---|
 | Pages, navigation, mobile menu, filters, project template, motion, SEO metadata, sitemap/robots | Functional |
-| Contact form | UI, validation, loading/success/error states and honeypot are real. **Delivery is pending**: set `NEXT_PUBLIC_FORM_ENDPOINT` once a form service is chosen; until then it reports "integration pending" and sends nothing |
-| Projects on `/work` and the home page | **Placeholders**, clearly labelled — not real client work |
+| Contact | Direct WhatsApp / call for Kimaya and Yashodhan (no form, by design) |
+| Portfolio | Nine supplied Instagram brands. Category/summary come from public bios; no AEON-produced posts are showcased until confirmed (see `docs/portfolio/instagram-portfolio-integration.md`) |
 | Contact email/phone/socials | **Not supplied** — hidden until set in `src/lib/site.ts` |
 | Testimonials, metrics, client logos | None shown (none supplied) |
 
 ## Pending from the owner
-Real projects, images and permissions · contact details and social links · contact-form destination · form service choice · final domain · approved wordmark source (current one is recreated in HTML/CSS) · deployment target.
+Real projects, images and permissions · contact details and social links  · final domain · approved wordmark source (current one is recreated in HTML/CSS) · deployment target.

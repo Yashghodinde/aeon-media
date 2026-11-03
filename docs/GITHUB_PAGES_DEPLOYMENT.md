@@ -47,10 +47,6 @@ Permissions are the minimum: `contents: read`, `pages: write`, `id-token: write`
 3. No config change is normally needed: `configure-pages` reports an empty `base_path` for custom domains. If a build ever uses the wrong path, set `NEXT_PUBLIC_BASE_PATH: ""` in the workflow's build step.
 4. Optionally add `public/CNAME` containing the domain.
 
-## Contact form (integration pending)
-GitHub Pages has no backend. The form (`src/components/sections/ContactForm.tsx`) validates, has loading, success and error states, and a honeypot field. It POSTs to `NEXT_PUBLIC_FORM_ENDPOINT` when set.
-- **Not configured yet**: with the variable empty the form reports "integration pending" and sends nothing. No endpoint is invented.
-- To enable: choose a form service (or a serverless function you host), then set repository **Variables** → `NEXT_PUBLIC_FORM_ENDPOINT` to its public URL. Never put secrets in frontend code. Confirm spam protection and consent text before launch.
 
 ## Asset optimisation guidelines
 `next/image` optimisation is off on static hosts, so optimise files before committing.

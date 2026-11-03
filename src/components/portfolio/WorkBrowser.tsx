@@ -11,11 +11,13 @@ type Filter = "all" | Industry;
 
 export function WorkBrowser({ projects }: { projects: PortfolioProject[] }) {
   const [filter, setFilter] = useState<Filter>("all");
+  // Only categories that actually have projects.
+  const used = (Object.keys(industryLabels) as Industry[]).filter((k) => projects.some((p) => p.category === k));
   const options: { value: Filter; label: string }[] = [
     { value: "all", label: "All work" },
-    ...(Object.keys(industryLabels) as Industry[]).map((k) => ({ value: k, label: industryLabels[k] })),
+    ...used.map((k) => ({ value: k, label: industryLabels[k] })),
   ];
-  const shown = filter === "all" ? projects : projects.filter((p) => p.industry === filter);
+  const shown = filter === "all" ? projects : projects.filter((p) => p.category === filter);
 
   return (
     <div>
@@ -35,12 +37,12 @@ export function WorkBrowser({ projects }: { projects: PortfolioProject[] }) {
           </button>
         ))}
       </div>
-      <p className="sr-only" aria-live="polite">{shown.length} projects shown</p>
+      <p className="sr-only" aria-live="polite">{shown.length} brands shown</p>
       <motion.ul layout className="mt-10 grid gap-x-10 gap-y-12 sm:mt-16 sm:grid-cols-2 sm:gap-y-20 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {shown.map((p) => (
-            <motion.li key={p.slug} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-              <ProjectCard project={p} compact />
+          {shown.map((p, i) => (
+            <motion.li key={p.slug} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className={filter === "all" && i === 0 ? "lg:col-span-2" : undefined}>
+              <ProjectCard project={p} index={i} wide={filter === "all" && i === 0} />
             </motion.li>
           ))}
         </AnimatePresence>

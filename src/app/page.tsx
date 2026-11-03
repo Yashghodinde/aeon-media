@@ -10,7 +10,7 @@ import { gains, industryLabels, valuePillars } from "@/data/content";
 import { projects } from "@/data/projects";
 
 export default function HomePage() {
-  const featured = [projects[0], projects[1], projects[2]];
+  const featured = [projects[0], projects[4], projects[7]];
   return (
     <>
       <Hero />
@@ -32,14 +32,13 @@ export default function HomePage() {
       <Section labelledBy="work-title">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
-            <Reveal><SectionHeading id="work-title" eyebrow="Selected work" title="Work that shows how your brand can look." /></Reveal>
+            <Reveal><SectionHeading id="work-title" eyebrow="Selected work" title="Brands we have worked with." /></Reveal>
             <TextLink href="/work">See all work</TextLink>
           </div>
-          <p className="mt-5 text-sm text-muted md:mt-6">Placeholders shown — real projects will replace these once supplied.</p>
         </Container>
         <div className="mx-auto w-full max-w-[var(--aeon-content-max)] md:px-[var(--aeon-gutter)]">
           <ul aria-label="Selected projects" className="scroll-row mt-8 flex scroll-px-[var(--aeon-gutter)] snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--aeon-gutter)] pb-2 md:mt-16 md:grid md:snap-none md:grid-cols-3 md:gap-x-10 md:gap-y-16 md:overflow-visible md:px-0">
-            {featured.map((p, i) => (<Reveal as="li" key={p.slug} delay={i * 0.1} className="w-[72%] max-w-[20rem] shrink-0 snap-start md:w-auto md:max-w-none"><ProjectCard project={p} imageClassName="max-md:aspect-square" /></Reveal>))}
+            {featured.map((p, i) => (<Reveal as="li" key={p.slug} delay={i * 0.1} className="w-[72%] max-w-[20rem] shrink-0 snap-start md:w-auto md:max-w-none"><ProjectCard project={p} index={i} /></Reveal>))}
           </ul>
         </div>
         <Container>

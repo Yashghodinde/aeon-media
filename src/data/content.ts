@@ -1,9 +1,12 @@
-export type Industry = "clothing" | "jewellery" | "interiors";
+export type Industry = "architecture-interiors" | "jewellery" | "lifestyle" | "food-agriculture" | "healthcare-wellness" | "sports-equipment";
 
 export const industryLabels: Record<Industry, string> = {
-  clothing: "Clothing & Apparel",
+  "architecture-interiors": "Architecture & Interiors",
   jewellery: "Jewellery",
-  interiors: "Interiors",
+  lifestyle: "Fashion & Lifestyle",
+  "food-agriculture": "Food & Agriculture",
+  "healthcare-wellness": "Healthcare & Wellness",
+  "sports-equipment": "Sports & Equipment",
 };
 
 export const valuePillars = [
