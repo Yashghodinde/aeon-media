@@ -1,0 +1,60 @@
+/* AEON Media — starter brand tokens */
+:root {
+  color-scheme: light;
+
+  /* Core palette */
+  --aeon-ivory: #F8F6F1;
+  --aeon-champagne: #E9E0D2;
+  --aeon-taupe: #C9B99F;
+  --aeon-charcoal: #292722;
+  --aeon-white: #FFFFFF;
+
+  /* Semantic roles */
+  --aeon-page-bg: var(--aeon-ivory);
+  --aeon-surface: var(--aeon-white);
+  --aeon-surface-soft: var(--aeon-champagne);
+  --aeon-text: var(--aeon-charcoal);
+  --aeon-text-muted: #625E56;
+  --aeon-border: #D8D0C3;
+  --aeon-primary-bg: var(--aeon-charcoal);
+  --aeon-primary-text: var(--aeon-ivory);
+
+  /* ONME wordmark */
+  --aeon-wordmark-highlight-bg: var(--aeon-charcoal);
+  --aeon-wordmark-highlight-text: var(--aeon-ivory);
+  --aeon-wordmark-highlight-radius: 0.22em;
+
+  /* Layout */
+  --aeon-content-max: 82rem;
+  --aeon-page-gutter: clamp(1.25rem, 4vw, 4rem);
+  --aeon-section-space: clamp(4rem, 9vw, 9rem);
+  --aeon-radius-small: 0.25rem;
+  --aeon-radius-medium: 0.75rem;
+
+  /* Motion */
+  --aeon-motion-fast: 180ms;
+  --aeon-motion-standard: 280ms;
+  --aeon-motion-slow: 560ms;
+  --aeon-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  background: var(--aeon-page-bg);
+  color: var(--aeon-text);
+}
+
+::selection {
+  color: var(--aeon-primary-text);
+  background: var(--aeon-primary-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
